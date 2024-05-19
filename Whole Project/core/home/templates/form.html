@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dump Prediction System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-Q4Da2FoHfWn8xqT2+oP5I1urEDjC0miUEAt/i6FygPKuaZJMbKw3m1J2Qzgce70vN0CUGyIv/H2dW6gDv4kWqA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('https://i.ibb.co/KNHrttG/l.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        .side-panel {
+            width: 250px;
+            background-color: rgba(2, 2, 21, 0.8);
+            padding: 20px;
+            height: 700px;
+            color: white;
+        }
+
+        .options {
+            margin-bottom: 20px;
+        }
+
+        .options a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .options a:hover {
+            background-color: #ddd;
+            border-radius: 10px;
+            color: black;
+        }
+
+        .options a i {
+            color: white;
+            margin-right: 10px;
+        }
+
+        .container {
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            max-width: 650px;
+            width: 80%;
+            margin-right: 350px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            height: 550px;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .main-content h1 {
+            margin-top: 0;
+            margin-left: 200px;
+
+        }
+
+        form {
+            margin-top: 20px;
+
+        }
+
+        label {
+            display: block;
+            color: #555;
+            font-size: 20px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 10px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            font-size: 15px;
+            width: 100%;
+            font-weight: bold;
+            background-color: green;
+            border: 1px solid white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #logout {
+            background-color: red;
+            color: white;
+            border: 1px solid white;
+        }
+        
+        #back {
+            background-color: green;
+            border: 1px solid white;
+            color: white;
+            font-size: 20px;
+            width: 50%;
+            justify-content: center;
+            font-weight: bold;
+            border-radius: 5px;
+            padding: 15px 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="side-panel">
+        <div class="options">
+            <a href="#"><i class="fas fa-user"></i> Admin Panel</a>
+            <a href="{% url 'municipality_form' %}"><i class="fas fa-plus"></i> Register Municipal</a>
+            <a href="{% url 'dump_list' %}"><i class="fas fa-book"></i> All Report</a>
+            <br>
+            <a id="back" href="{% url 'admin_home' %}">Go to Home</a>
+        </div>
+    </div>
+    <br><br><br>
+    <div class="container">
+        <div class="main-content">
+            <h1>Add Municipal</h1>
+            <form method="post">
+                {% csrf_token %}
+                <label for="name">Name</label><br>
+                <input type="text" id="name" name="name" required><br>
+                <label for="address">Address</label><br>
+                <input type="text" id="address" name="address" required><br>
+                <label for="state">State</label><br>
+                <input type="text" id="state" name="state" required><br>
+                <label for="phone_number">Phone Number</label><br>
+                <input type="text" id="phone_number" name="phone_number" required><br><br>
+                <button type="submit">Add Municipal</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

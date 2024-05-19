@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dump Prediction System</title>
+    <script src="https://kit.fontawesome.com/7fcd57fbb0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-Q4Da2FoHfWn8xqT2+oP5I1urEDjC0miUEAt/i6FygPKuaZJMbKw3m1J2Qzgce70vN0CUGyIv/H2dW6gDv4kWqA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('https://i.ibb.co/KNHrttG/l.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+        }
+
+        .side-panel {
+            width: 220px;
+            background-color: rgba(2, 2, 21, 0.8);
+            padding: 20px;
+            height: 700px;
+            color: white;
+        }
+
+        .options {
+            margin-bottom: 20px;
+        }
+
+        .options a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .options a:hover {
+            background-color: #ddd;
+            border-radius: 10px;
+            color: black;
+        }
+
+        .options a i {
+            color: white;
+            margin-right: 10px;
+        }
+
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0.5, 0.8);
+            padding: 30px;
+            margin: 10px;
+            width: calc(33.33% - 20px);
+            box-sizing: border-box;
+
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .card p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        button {
+            background-color: transparent;
+            border: 1px solid red;
+            color: red;
+            font-size: 15px;
+            width: 40%;
+            font-weight: bold;
+            border-radius: 5px;
+            padding: 15px 30px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: red;
+            color: white;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .side-panel {
+                width: 100%;
+                height: auto;
+            }
+
+            .cards .card {
+                width: calc(50% - 20px);
+            }
+        }
+
+        #back {
+            background-color: green;
+            border: 1px solid white;
+            color: white;
+            font-size: 18px;
+            width: 50%;
+            justify-content: center;
+            font-weight: bold;
+            border-radius: 5px;
+            padding: 15px 30px;
+            cursor: pointer;
+        }
+
+        #search {
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="side-panel">
+            <div class="options">
+                <form method="GET" action="{% url 'municipality_cards' %}">
+                    <strong>Search</strong> <input id="search" type="text" name="state" placeholder="Enter State">
+                </form>
+                <br>
+                <a href="{% url 'index' %}"><i class="fas fa-tram"></i> Make Prediction</a>
+                <a href="{% url 'map' %}"><i class="fas fa-location"></i> Google Map</a>
+                <a href="{% url 'municipality_cards' %}"><i class="fas fa-city"></i> All Municipal</a>
+                <a href="{% url 'dump_form' %}"><i class="fas fa-book"></i>Report Issue</a>
+                <br>
+                <a id="back" href="{% url 'home' %}">Go to Home</a>
+            </div>
+        </div>
+
+        <div class="cards">
+            {% for municipality in municipalities %}
+            <div class="card">
+                <h2>{{ municipality.name }}</h2>
+                <p><strong>Address:</strong> {{ municipality.address }}</p>
+                <p><strong>State:</strong> {{ municipality.state }}</p>
+                <p><strong>Phone Number:</strong> {{ municipality.phone_number }}</p>
+                <br>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% block start %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dump Form</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<style>
+        body {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('https://i.ibb.co/KNHrttG/l.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: space-between;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .side-panel {
+            width: 290px;
+            background-color: rgba(2, 2, 21, 0.8);
+            padding: 20px;
+            height: 900px;
+            color: white;
+        }
+     
+        .options {
+            margin-bottom: 20px;
+        }
+
+        .options a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            font-size: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .options a:hover {
+            background-color: #ddd;
+            border-radius: 10px;
+            color: black;
+        }
+
+        .options a i {
+            color: white;
+            margin-right: 10px;
+        }
+
+        img {
+            max-width: 150px; /* Set maximum width */
+            max-height: 100px; /* Set maximum height */
+            border-radius: 10px;
+        }
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            font-size: 15px;
+            width: 100%;
+            font-weight: bold;
+            background-color: green;
+            border: 1px solid white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        #back {
+            background-color: green;
+            border: 1px solid white;
+            color: white;
+            font-size: 18px;
+            width: 70%;
+            justify-content: center;
+            font-weight: bold;
+            border-radius: 5px;
+            padding: 15px 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="side-panel">
+        <div class="options">
+            <a href="#"><i class="fas fa-user"></i> Admin</a>
+            <a href="{% url 'municipality_form' %}"><i class="fas fa-plus"></i> Register Municipal</a>
+            <a href="{% url 'dump_list' %}"><i class="fas fa-book"></i> All Report</a>
+            <br>
+            <a id="back" href="{% url 'admin_home' %}">Go to Home</a>
+        </div>
+    </div>
+    <div class="class mt-3 ">
+    <table class="table ">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Current Location</th>
+            <th>Image</th>
+            <th>Current City</th>
+            <th>Dump Type</th>
+            <th>Dump Size</th>
+            <th>Created At</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for dump in dumps %}
+        <tr>
+            <td>{{ dump.name }}</td>
+            <td>{{ dump.phone_number }}</td>
+            <td>{{ dump.current_location }}</td>
+            <td>
+                {% if dump.image %}
+                    <img src="{{ dump.image.url }}" alt="{{ dump.name }}">
+                {% else %}
+                    No image available
+                {% endif %}
+            </td>
+            <td>{{ dump.current_city }}</td>
+            <td>{{ dump.dump_type }}</td>
+            <td>{{ dump.dump_size }}</td>
+            <td>{{ dump.created_at }}</td>
+            <td><a href="/delete_dump/{{dump.id}}" class="btn btn-danger m-2">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    </div>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dump Prediction System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .navbar {
+            background-color: rgb(36, 36, 56);
+            padding: 15px;
+            color: white;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            border: 1px solid white;
+            border-radius: 5px;
+            background-color: green;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .nav-button:hover {
+            background-color: white;
+            color: green;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: rgb(226, 221, 221);
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            margin: 20px;
+            width: 50%;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: 300px;
+            border-radius: 20px;
+        }
+
+        h2 {
+            color: black;
+        }
+
+        p {
+            color: black;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            img {
+                max-width: 100%;
+            }
+        }
+
+        .container1 {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <h1>Smart Waste Management System</h1>
+        <div class="nav-buttons">
+            <a href="{% url 'index' %}" class="nav-button">Start Prediction</a>
+        </div>
+    </div>
+
+    <div class="container1">
+        <div class="container">
+            <div class="image">
+                <h2>What is Legal Dump?</h2>
+                <p>A dump image refers to a visual representation of a waste disposal site, typically showing discarded
+                    materials piled up or scattered in an unorganized manner. It may depict various types of waste,
+                    including household garbage, industrial byproducts, or construction debris.</p>
+                <br>
+                <img src="https://i.ibb.co/syKxkpZ/legal-removebg-preview-1.png" alt="Dump Image">
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="image">
+                <h2>What is Illegal Dump?</h2>
+                <p>A legal dump image represents a waste disposal site where materials are discarded in compliance with
+                    environmental regulations and local laws. These sites may include designated landfills, recycling
+                    centers, or other authorized facilities where waste is managed and processed responsibly to minimize
+                    environmental impact.</p>
+                <br>
+                <img src="https://i.ibb.co/9N8YZ2g/illegal-removebg-preview.png" alt="Legal Dump Image">
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

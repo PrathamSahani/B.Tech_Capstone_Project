@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dump Prediction System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-Q4Da2FoHfWn8xqT2+oP5I1urEDjC0miUEAt/i6FygPKuaZJMbKw3m1J2Qzgce70vN0CUGyIv/H2dW6gDv4kWqA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+    body {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('https://i.ibb.co/KNHrttG/l.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .side-panel {
+        width: 200px;
+        background-color: rgba(2, 2, 21, 0.8);
+        padding: 20px;
+        height: 700px;
+        color: white;
+    }
+
+    .options {
+        margin-bottom: 20px;
+    }
+
+    .options a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        transition: background-color 0.3s ease;
+    }
+
+    .options a:hover {
+        background-color: #ddd;
+        border-radius: 10px;
+        color: black;
+    }
+
+    .options a i {
+        color: white;
+        margin-right: 10px;
+    }
+
+    h1 {
+        margin-top: 50px;
+        font-size: 36px;
+    }
+
+    .container {
+        margin-top: 25px;
+        display: flex;
+        justify-content: space-between;
+        max-width: 650px;
+        width: 80%;
+        margin-right: 350px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        height: 670px;
+    }
+
+    .main-content {
+        flex: 1;
+        padding: 20px;
+    }
+
+    .main-content h1 {
+        margin-top: 0;
+        margin-left: 200px;
+    }
+
+    form {
+        margin-top: 20px;
+    }
+
+    label {
+        color: #555;
+        font-size: 18px;
+    }
+
+    input[type="text"],
+    select{
+        width: calc(100% - 10px);
+        padding: 7px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    select {
+        appearance: none;
+        background-image: url('data:image/svg+xml;utf8,<svg fill="rgba(0, 0, 0, 0.5)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>');
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        padding-right: 30px;
+    }
+
+    button {
+        background-color: #4caf50;
+        color: white;
+        padding: 15px 20px;
+        border: none;
+        font-size: 15px;
+        width: 100%;
+        font-weight: bold;
+        background-color: green;
+        border: 1px solid white;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    input[type=file] {
+        display: none;
+        /* Hide the file input */
+    }
+
+    .custom-upload {
+        display: inline-block;
+        border: 2px dashed #ccc;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .custom-upload:hover {
+        background-color: #f9f9f9;
+    }
+
+    .custom-upload i {
+        margin-right: 10px;
+    }
+
+    #image-preview {
+        width: 190px;
+        height: 100px;
+        margin-bottom: 10px;
+        display: none;
+        /* Initially hide the image preview */
+    }
+
+    .radio-group {
+        display: flex;
+        align-items: center;
+    }
+    
+    .radio-container {
+        margin-right: 20px;
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+        font-size: 16px;
+        color: #333; /* Text color */
+    }
+    
+    .radio-container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+    
+    .checkmark {
+        position: relative;
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        border: 1px solid black;
+        background-color: white;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+    
+    .radio-container:hover .checkmark {
+        background-color: #ddd;
+    }
+    
+    .radio-container input:checked ~ .checkmark {
+        background-color: black; /* Selected color */
+    }
+    
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+    
+    .radio-container input:checked ~ .checkmark:after {
+        display: block;
+    }
+    
+    .radio-container .checkmark:after {
+        top: 50%;
+        left: 50%;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: white;
+        transform: translate(-50%, -50%);
+    }
+    #back {
+        background-color: green;
+        border: 1px solid white;
+        color: white;
+        font-size: 18px;
+        width: 70%;
+        justify-content: center;
+        font-weight: bold;
+        border-radius: 5px;
+        padding: 15px 30px;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div class="side-panel">
+        <div class="options">
+            <a href="{% url 'index' %}"><i class="fas fa-tram"></i> Make Prediction</a>
+            <a href="{% url 'map' %}"><i class="fas fa-location"></i> Google Map</a>
+            <a href="{% url 'municipality_cards' %}"><i class="fas fa-city"></i> All Municipal</a>
+            <a href="{% url 'dump_form' %}"><i class="fas fa-book"></i>Report Issue</a>
+            <br>
+            <a id="back" href="{% url 'home' %}">Go to Home</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="main-content">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="name">Name</label><br>
+                <input type="text" id="name" name="name"><br>
+
+                <label for="phone_number">Phone Number</label><br>
+                <input type="text" id="phone_number" name="phone_number"><br>
+
+                <label for="current_location">Current Location</label><br>
+                <input type="text" id="current_location" name="current_location"><br>
+
+            
+
+                <!-- Custom upload button -->
+                <label for="image" class="custom-upload">
+                    <i class="fas fa-upload"></i> Upload Image
+                </label>
+                <input type="file" id="image" name="image" accept="image/*" onchange="previewImage(event)"><br>
+                <!-- Image preview -->
+                <img id="image-preview" src="" alt="Image Preview">
+
+                <label for="current_city">Current City</label><br>
+                <input type="text" id="current_city" name="current_city"><br>
+
+                <label for="dump_type">Dump Type</label><br><br>
+                <div class="radio-group">
+                    <label class="radio-container">
+                        <input type="radio" id="sukha" name="dump_type" value="Sukha">
+                       <strong>Dry Dump</strong> 
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="radio-container">
+                        <input type="radio" id="gilla" name="dump_type" value="Gilla">
+                        <strong>Weight Dump</strong>
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <br>
+                
+                <label for="dump_size">Dump Size</label><br><br>
+                <div class="radio-group">
+                    <label class="radio-container">
+                        <input type="radio" id="small" name="dump_size" value="Small">
+                        <strong>Small</strong>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="radio-container">
+                        <input type="radio" id="normal" name="dump_size" value="Normal">
+                        <strong>Normal</strong>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="radio-container">
+                        <input type="radio" id="large" name="dump_size" value="Large">
+                        <strong>Large</strong>
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <br>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function previewImage(event) {
+            const preview = document.getElementById('image-preview');
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                preview.src = reader.result;
+                preview.style.display = 'block'; // Show the image preview
+            };
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = '';
+                preview.style.display = 'none'; // Hide the image preview if no file is selected
+            }
+        }
+    </script>
+</body>
+
+</html>

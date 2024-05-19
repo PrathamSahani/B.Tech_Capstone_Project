@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dump Prediction System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-Q4Da2FoHfWn8xqT2+oP5I1urEDjC0miUEAt/i6FygPKuaZJMbKw3m1J2Qzgce70vN0CUGyIv/H2dW6gDv4kWqA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('https://i.ibb.co/KNHrttG/l.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            position: relative;
+            width: 80%;
+            height: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .side-panel {
+            width: 230px;
+            height: 100%;
+            background-color: rgba(2, 2, 21, 0.8);
+            padding: 20px;
+            color: white;
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+
+        .options {
+            margin-bottom: 20px;
+
+        }
+
+        .options a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            font-size: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .options a:hover {
+            background-color: #ddd;
+            border-radius: 10px;
+            color: black;
+        }
+
+        .options a i {
+            margin-right: 10px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            font-size: 15px;
+            width: 100%;
+            font-weight: bold;
+            background-color: green;
+            border: 1px solid white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #logout {
+            background-color: red;
+            border: 1px solid white;
+        }
+
+        #map-container {
+            width: 80%;
+            height: 100%;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        #map {
+            width: 90%;
+            height: 90%;
+            margin-left: 35px;
+            margin-top: 20px;
+
+        }
+
+        #back {
+            background-color: green;
+            border: 1px solid white;
+            color: white;
+            font-size: 20px;
+            width: 50%;
+            justify-content: center;
+            font-weight: bold;
+            border-radius: 5px;
+            padding: 15px 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="side-panel">
+        <div class="options">
+            <br><br>
+            <a href="{% url 'index' %}"><i class="fas fa-tram"></i> Make Prediction</a>
+            <a href="{% url 'map' %}"><i class="fas fa-location"></i> Google Map</a>
+            <a href="{% url 'municipality_cards' %}"><i class="fas fa-city"></i> All Municipal</a>
+            <a href="{% url 'dump_form' %}"><i class="fas fa-book"></i>Report Issue</a>
+            <br>
+            <a id="back" href="{% url 'home' %}">Go to Home</a>
+        </div>
+    </div>
+
+
+    <div id="map-container">
+        <iframe id="map"
+            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d58649.963384964525!2d77.36299822104618!3d23.256812579103254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1snagar%20nigam!5e0!3m2!1sen!2sin!4v1715456924362!5m2!1sen!2sin"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+</body>
+
+</html>
